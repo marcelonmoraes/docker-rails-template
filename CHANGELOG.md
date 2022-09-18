@@ -7,11 +7,26 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Rename `run bash` to `run shell`
+
+### Fixed
+
+- Assets in production mode were using the wrong `.sprockets-manifest-XXX.json` file, `bin/docker-entrypoint-web` was adjusted to delete all but the last built version since Rails doesn't pick the latest file based on `mtime`
+
+## [0.7.0] - 2022-09-08
+
 ### Added
 
 - `set -o nounset` to `run` script to exit if there's any undefined variables
 
 ### Changed
+
+- Switch Docker Compose `env_file` to `environment` for `postgres` to avoid needless recreates on `.env` changes
+- Replace override file with Docker Compose profiles for running specific services
+- Update Github Actions to use Ubuntu 22.04
+- Enable BuildKit by default in the `.env.example` file
 
 #### Languages and services
 
@@ -36,6 +51,11 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 - Update `esbuild` to `0.15.2`
 - Update `postcss` to `8.4.16`
 - Update `tailwindcss` to `3.1.8`
+
+### Removed
+
+- Docker Compose `env_file` property for `redis` to avoid needless recreates on `.env` changes
+- Drop support for Docker Compose v1 (mainly to use profiles in an optimal way, it's worth it!)
 
 ## [0.6.0] - 2022-05-15
 
@@ -234,7 +254,8 @@ Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Everything!
 
-[Unreleased]: https://github.com/nickjj/docker-rails-example/compare/0.6.0...HEAD
+[Unreleased]: https://github.com/nickjj/docker-rails-example/compare/0.7.0...HEAD
+[0.7.0]: https://github.com/nickjj/docker-rails-example/compare/0.6.0...0.7.0
 [0.6.0]: https://github.com/nickjj/docker-rails-example/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/nickjj/docker-rails-example/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/nickjj/docker-rails-example/compare/0.3.0...0.4.0
