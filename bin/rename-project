@@ -29,11 +29,11 @@ project's database(s) by removing any associated Docker volumes.
 EOF
 
 while true; do
-    read -p "Run docker-compose down -v (y/n)? " -r yn
+    read -p "Run docker compose down -v (y/n)? " -r yn
     case "${yn}" in
         [Yy]* )
           printf "\n--------------------------------------------------------\n"
-          docker-compose down -v
+          docker compose down -v
           printf -- "--------------------------------------------------------\n"
 
           break;;
@@ -94,5 +94,5 @@ script as many times as you want until you're happy.
 
 Check out the rest of the README on GitHub to wrap things up:
 
-https://github.com/nickjj/docker-${FIND_FRAMEWORK}-example#start-and-setup-the-project
+https://github.com/marcelonmoraes/docker-${FIND_FRAMEWORK}-template#start-and-setup-the-project
 EOF
